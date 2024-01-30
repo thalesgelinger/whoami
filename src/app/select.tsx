@@ -6,9 +6,9 @@ export default function Init() {
     return <>
         <Stack.Screen options={{ headerShown: false }} />
         <View style={styles.container}>
-            <Text style={styles.text}>Home</Text>
-            <Link href={"/select"} asChild>
-                <Button title="go to select page" />
+            <Text style={styles.text}>Select</Text>
+            <Link href={"/wait"} asChild>
+                <Button title="go to Waiting page" />
             </Link>
         </View >
     </>
