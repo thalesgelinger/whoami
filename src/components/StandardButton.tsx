@@ -6,14 +6,22 @@ type StandardButtonProps = {
   onPress?: () => void;
 };
 
-export const StandardButton = forwardRef(({ text, onPress, ...rest}: StandardButtonProps, ref) => {
-
-  return (
-      <Pressable {...rest}  style={styles.button} onPress={onPress} >
+export const StandardButton = forwardRef(
+  ({ text, onPress, ...rest }: StandardButtonProps, ref) => {
+    return (
+      <Pressable
+        {...rest}
+        style={({ pressed }) => [
+          { ...styles.button },
+          { opacity: pressed ? 0.8 : 1 },
+        ]}
+        onPress={onPress}
+      >
         <Text style={styles.buttonText}>{text}</Text>
       </Pressable>
-  );
-})
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   buttonText: {
