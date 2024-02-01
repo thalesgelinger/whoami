@@ -1,6 +1,5 @@
-import { Href, Link, Stack } from 'expo-router';
 import { forwardRef } from 'react';
-import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { Text, StyleSheet, Pressable } from 'react-native';
 
 type StandardButtonProps = {
   text: string;
