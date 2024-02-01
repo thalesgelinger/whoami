@@ -2,19 +2,13 @@ import { useEffect, useRef } from "react"
 
 import { RealtimeChannel, RealtimeChannelSendResponse } from "@supabase/supabase-js";
 import { supabase } from "../services/supabase";
-
-type BroadCastPayload = {
-    type: "broadcast";
-    event: string;
-    payload: any;
-}
+import { v4 as uuid4 } from "uuid"
 
 type UseRealTime = <T = any>(payload: T) => Promise<RealtimeChannelSendResponse | undefined>
 
+const id = uuid4()
 
-const id = Math.random()
-
-export const useRealTime = (room: string, receiver: (payload: BroadCastPayload) => void): UseRealTime => {
+export const useRealTime = <Payload = any>(room: string, receiver: (payload: Payload & { id: string }) => void): UseRealTime => {
 
     const channel = useRef<RealtimeChannel>()
 
@@ -32,7 +26,9 @@ export const useRealTime = (room: string, receiver: (payload: BroadCastPayload) 
             .on(
                 'broadcast',
                 { event },
-                receiver
+                ({ payload }) => {
+                    receiver(payload)
+                }
             )
             .subscribe((status) => {
                 if (status !== 'SUBSCRIBED') {

@@ -1,4 +1,5 @@
 import { useRealTime } from "@/src/hooks/useRealTime";
+import { Link } from "expo-router";
 import { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
 
@@ -23,6 +24,10 @@ export default function Debug() {
                 title="Send message into broadcast"
                 onPress={sendBroadcastMessage}
             />
+            <Link href="/debug/chat" asChild>
+                <Button title="Test RealTime" />
+            </Link>
+
         </View>
     </>
 }
