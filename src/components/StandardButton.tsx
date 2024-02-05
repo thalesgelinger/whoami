@@ -6,7 +6,7 @@ type StandardButtonProps = {
   onPress?: () => void;
 };
 
-export const StandardButton = forwardRef(
+const StandardButton = forwardRef(
   ({ text, onPress, ...rest }: StandardButtonProps, ref) => {
     return (
       <Pressable

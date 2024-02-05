@@ -5,7 +5,7 @@ type StandardTextInputProps = {
   onChangeText?: (text: string) => void;
 };
 
-export const StandardTextInput = ({
+const StandardTextInput = ({
   placeholder,
   onChangeText,
 }: StandardTextInputProps) => {
