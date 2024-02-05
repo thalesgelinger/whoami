@@ -1,6 +1,6 @@
 import 'react-native-get-random-values'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack, Link } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -15,26 +15,27 @@ export {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-    const [loaded, error] = useFonts({
-        SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
-        ...FontAwesome.font,
-    });
+  const [loaded, error] = useFonts({
+    SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
+    PatrickHandRegular: require('../../node_modules/@expo-google-fonts/patrick-hand/PatrickHand_400Regular.ttf'),
+    ...FontAwesome.font,
+  });
 
-    useEffect(() => {
-        if (error) throw error;
-    }, [error]);
+  useEffect(() => {
+    if (error) throw error;
+  }, [error]);
 
-    useEffect(() => {
-        if (loaded) {
-            SplashScreen.hideAsync();
-        }
-    }, [loaded]);
-
-    if (!loaded) {
-        return null;
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
     }
+  }, [loaded]);
 
-    return <RootLayoutNav />;
+  if (!loaded) {
+    return null;
+  }
+
+  return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
